@@ -1,28 +1,18 @@
-export class Zombie {
-    private x: number = 2000
-    private y: number = 450
+import { Game } from "./game.js"
+import { GameObject } from "./gameobject.js"
+
+export class Zombie extends GameObject {
+    private game : Game
+    x: number = 1400
+    y: number = 450
     private div : HTMLElement
 
     constructor(){
-        console.log("This zombie looks like they have a problem for me to solve")
-        this.create()
+        super("zombie")
     }
 
-    public getClientRect() : DOMRect {
-        return this.div.getBoundingClientRect();
-    }
-    
-    private create() : void {
-        this.div = document.createElement("zombie")
-         this.div.style.transform = `translate(${this.x}px, ${this.y}px)` 
-        document.body.appendChild(this.div)
-
-    }
-
-    public update(xspeed: number, yspeed: number): void{
-        this.x += xspeed;
-        this.y += yspeed;
-        this.div.style.transform = `translate(${this.x}px, ${this.y}px)` 
+    public update(): void{
+        super.update()
     }
 
 }

@@ -1,33 +1,53 @@
 import { Background } from "./background.js";
+import { GameObject } from "./gameobject.js"
 import { Dog } from "./dog.js"
 import { Zombie } from "./zombie.js"
- 
-export class Graveyard {
+import { Game } from "./game.js"
+import { Bone } from "./bone.js" 
+import { Maggot } from "./maggot.js"
+import { Life } from "./life.js"
+
+export class Graveyard extends GameObject {
     private background: Background;
+    private game: Game;
     private zombie: Zombie;
     private dog: Dog;
+    private bones : Bone [] = [];
+    private maggots : Maggot[] = [];
+    private lives : Life [] = [];
     x: number;
     y: number;
-    horizontalSpeed : number = 0;
+   
     bgSpeed: number = 0;
 
-    constructor(){
+    constructor(g: Game){
+        super("gamescreen")
+        this.game = g
         this.create();
-        this.play()
         this.update()
+        const text = document.createElement("instructions")
+        text.innerText = "Catch the bones! Avoid the maggots!"
+        
     }
 
     private create(): void{
-        this.background = new Background()
-        this.dog = new Dog()
-        this.zombie = new Zombie()
-        window.addEventListener("keydown", (e:KeyboardEvent) => this.onKeyDown(e))
-        window.addEventListener("keyup", (e:KeyboardEvent) => this.onKeyUp(e))
+        this.background = new Background();
+        this.dog = new Dog();
+        this.zombie = new Zombie();
+        
+        this.bones.push(new Bone(this), new Bone(this), new Bone(this), new Bone(this), new Bone(this));
+        this.maggots.push(new Maggot(this), new Maggot(this), new Maggot(this), new Maggot(this), new Maggot(this));
     }
 
-    private play(){
-        let audio = new Audio('./music/technophobic_android-zombie_rag.mp3')
-        audio.play()
+    public removeBone(bone : Bone){
+        this.remove()
+    }
+
+    public removeMaggot(maggot : Maggot){
+        if (this.maggots.length == 0){
+            this.remove()
+            this.game.showEndScreen()
+        }
     }
 
     public checkCollision(a: ClientRect, b : ClientRect) : boolean {
@@ -38,34 +58,23 @@ export class Graveyard {
     }
 
     public update(): void{
-        this.dog.update(this.horizontalSpeed, 0);
-        this.background.update(this.bgSpeed, 0);
-        this.zombie.update(this.bgSpeed, 0);
-    }
-
-    private onKeyDown(e: KeyboardEvent): any {
-        console.log(e.key)
-        switch (e.key) {
-            case "ArrowLeft":
-                this.horizontalSpeed = -3,
-                this.bgSpeed = 7;
-                break;
-            case "ArrowRight":
-           
-                this.horizontalSpeed = 3,
-                this.bgSpeed = -7;
-                break;
-            default:
-                break;
+        if (this.checkCollision(this.dog.getFurureRectangle(), this.zombie.getRectangle())) {
+        } else {
+              this.dog.update(); 
         }
-    }
-    private onKeyUp(e: KeyboardEvent): void {
-        switch (e.key.toUpperCase()) {
-            case "ARROWLEFT":
-            case "ARROWRIGHT":
-                this.horizontalSpeed = 0,
-                this.bgSpeed = 0;
-                break
+      
+       this.zombie.update();
+        for (let b of this.bones) {
+            b.update();
+            if(this.checkCollision(this.dog.getRectangle(), b.getRectangle())){
+                this.removeBone(b);
+            }
         }
+        for (let m of this.maggots){
+            m.update();
+            if(this.checkCollision(this.dog.getRectangle(), m.getRectangle())){
+                this.removeMaggot(m)
+            }
+    }
     }
 }

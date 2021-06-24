@@ -1,20 +1,14 @@
-export class Background{
-    div: HTMLElement
-    private x : number = 0;
-    private y : number = 0; 
+import { GameObject } from "./gameobject.js"
 
-    constructor(){
-        this.create()
+export class Background extends GameObject {
+
+    constructor() {
+        super("graveyard")
+        this.x = 0
     }
 
-    private create(){
-        this.div = document.createElement("graveyard")
-        document.body.appendChild(this.div)
-    }
-
-    public update(xspeed: number, yspeed: number): void{
-        this.x += xspeed;
-        this.y += yspeed;
-        this.div.style.transform = `translate(${this.x}px, ${this.y}px)` 
+    public update() {
+        this.x--
+        this.element.style.backgroundPosition = `${this.x}px 0px`
     }
 }
