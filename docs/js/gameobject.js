@@ -16,4 +16,4 @@ export class GameObject {
         this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
     }
 }
-# sourceMappingURL=gameobject.js.map
+//# sourceMappingURL=gameobject.js.map

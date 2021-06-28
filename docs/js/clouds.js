@@ -6,4 +6,4 @@ export class Clouds extends GameObject {
         this.element.style.backgroundPosition = `${this.x}px 0px`;
     }
 }
-# sourceMappingURL=clouds.js.map
+//# sourceMappingURL=clouds.js.map
