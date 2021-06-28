@@ -1,4 +1,4 @@
-import { Background } from "./background.js";
+import { Background } from "./background.js"
 import { GameObject } from "./gameobject.js"
 import { Dog } from "./dog.js"
 import { Zombie } from "./zombie.js"
@@ -6,8 +6,10 @@ import { Game } from "./game.js"
 import { Bone } from "./bone.js" 
 import { Maggot } from "./maggot.js"
 import { Life } from "./life.js"
+import { UI } from "./ui.js"
 
 export class Graveyard extends GameObject {
+    private sound : HTMLAudioElement;
     private background: Background;
     private game: Game;
     private zombie: Zombie;
@@ -15,10 +17,12 @@ export class Graveyard extends GameObject {
     private bones : Bone [] = [];
     private maggots : Maggot[] = [];
     private lives : Life [] = [];
+    private ui : UI;
+    private spawnCounter: number = 0
+
+
     x: number;
     y: number;
-   
-    bgSpeed: number = 0;
 
     constructor(g: Game){
         super("gamescreen")
@@ -33,21 +37,54 @@ export class Graveyard extends GameObject {
     private create(): void{
         this.background = new Background();
         this.dog = new Dog();
-        this.zombie = new Zombie();
-        
-        this.bones.push(new Bone(this), new Bone(this), new Bone(this), new Bone(this), new Bone(this));
-        this.maggots.push(new Maggot(this), new Maggot(this), new Maggot(this), new Maggot(this), new Maggot(this));
+        this.dog.spawn()
+        this.zombie = new Zombie(); 
+        for(let i = 0; i < 4; i++){
+            this.lives.push(new Life(this.dog, i));
+        }
+        this.ui = new UI();
     }
 
-    public removeBone(bone : Bone){
+    private reset(){
+        for(let m of this.maggots){
+            m.remove()
+        }
+        for (let b of this.bones){
+            b.remove()
+        }
+        this.ui.remove()
         this.remove()
     }
 
-    public removeMaggot(maggot : Maggot){
-        if (this.maggots.length == 0){
-            this.remove()
-            this.game.showEndScreen()
-        }
+   private spawnMoreBones(b : Bone){
+            b.remove()
+            this.bones.push(new Bone(this));
+            b.setPosition()
+    }
+
+    private spawnMoreMaggots(m : Maggot){
+        m.remove()
+        this.maggots.push(new Maggot(this));
+        m.setPosition()
+    }
+
+   private removeLife() {
+        if (this.lives.length !== 0){
+               let life = this.lives.pop()
+               if(life){
+                  life.remove() 
+               }
+            }
+            if(this.lives.length == 0){
+                this.reset()
+                this.game.showEndScreen()
+            }
+    }    
+
+    private addScore(score: number){
+        let newScore = this.ui.getScore() + score;
+        this.ui.setScore(newScore)
+        this.ui.update();
     }
 
     public checkCollision(a: ClientRect, b : ClientRect) : boolean {
@@ -58,23 +95,42 @@ export class Graveyard extends GameObject {
     }
 
     public update(): void{
-        if (this.checkCollision(this.dog.getFurureRectangle(), this.zombie.getRectangle())) {
-        } else {
+        this.spawnCounter++
+        if(this.spawnCounter > 120) {
+            this.spawnCounter = 0
+            this.maggots.push(new Maggot(this));
+            this.bones.push(new Bone(this));
+        }
+        if ( this.dog.x < -5) {
+            this.dog.x = -4
+        }else {
               this.dog.update(); 
         }
-      
-       this.zombie.update();
+        if (this.checkCollision(this.dog.getFutureRectangle(), this.zombie.getRectangle())){
+
+        }else{
+            this.dog.update();
+        }
+        this.zombie.update()
+    
         for (let b of this.bones) {
-            b.update();
+             b.update();
             if(this.checkCollision(this.dog.getRectangle(), b.getRectangle())){
-                this.removeBone(b);
+                this.sound = new Audio("./music/crunch.mp3")
+                this.sound.play();
+                this.addScore(10);
+                this.spawnMoreBones(b);
             }
         }
         for (let m of this.maggots){
             m.update();
             if(this.checkCollision(this.dog.getRectangle(), m.getRectangle())){
-                this.removeMaggot(m)
+                this.sound = new Audio("./music/sad-dog.mp3")
+                this.sound.play();
+                this.removeLife()
+                this.spawnMoreMaggots(m);
             }
-    }
+         
+         }
     }
 }

@@ -7,8 +7,7 @@ export class StartScreen extends GameObject {
     
     constructor(game:Game) {
         super("startscreen")
-
-        this.game = game
+        this.game = game;
         
         const logo = document.createElement("logo")
         const btn = document.createElement("button")
@@ -16,10 +15,8 @@ export class StartScreen extends GameObject {
 
         this.element.appendChild(logo)
         this.element.appendChild(btn)
-     
-
+    
         btn.innerText = "START GAME"
-        
         btn.addEventListener("click", () => this.gotoGameScreen())  
         
     }

@@ -1,33 +1,28 @@
-import { Game } from "./game.js"
 import { GameObject } from "./gameobject.js"
-import { Life } from "./life.js"
 
 export class Dog extends GameObject{
-    private game : Game
-    private _score : number = 0
-    private lives : Life [] = [];
     public horizontalSpeed : number = 0;
-    x : number = 3;
-    y : number = 560;
+    x : number = 0;
+    y : number = 0;
 
     constructor(){
         super("dog")
         console.log("Dog has risen from the dead!")
-        this.lives.push(new Life(this)),(new Life(this)),(new Life(this)),(new Life(this));
         window.addEventListener("keydown", (e:KeyboardEvent) => this.onKeyDown(e));
         window.addEventListener("keyup", (e:KeyboardEvent) => this.onKeyUp(e));
     }
 
-    getFurureRectangle(){
+    public spawn(){
+        this.x = 5;
+        this.y = 560;
+        console.log(this.x, this.y)
+    }
+
+    public getFutureRectangle(){
         let rect = this.element.getBoundingClientRect()
         rect.x += this.horizontalSpeed
         return rect
      }
-
-     get score() {
-        return this._score
-    }
-
 
     public update(): void{
         this.x += this.horizontalSpeed
@@ -40,9 +35,11 @@ export class Dog extends GameObject{
         switch (e.key) {
             case "ArrowLeft":
                 this.horizontalSpeed = -5;
+                this.element.classList.add('left')
                 break;
             case "ArrowRight":
                 this.horizontalSpeed = 5;
+                this.element.classList.remove('left')
                 break;
             default:
                 break;

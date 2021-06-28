@@ -6,9 +6,4 @@ export class Background extends GameObject {
         super("graveyard")
         this.x = 0
     }
-
-    public update() {
-        this.x--
-        this.element.style.backgroundPosition = `${this.x}px 0px`
-    }
 }
