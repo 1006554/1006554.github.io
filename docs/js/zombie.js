@@ -9,4 +9,4 @@ export class Zombie extends GameObject {
         super.update();
     }
 }
-//# sourceMappingURL=zombie.js.map
+# sourceMappingURL=zombie.js.map
