@@ -25,4 +25,4 @@ export class Bone extends GameObject {
         this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
     }
 }
-//# sourceMappingURL=bone.js.map
+# sourceMappingURL=bone.js.map
