@@ -1,5 +1,5 @@
 body {
-    color: #ffffff;
+    
     background-color: #70CF51;
     text-align: center;
     font-size: 30px;
@@ -7,6 +7,7 @@ body {
     overflow: hidden;
     margin:0px; padding:0px;
     top: 50%;
+    color:#ffffff;
 }
 
 ui, startscreen, endscreen, life, bone, maggot, dog, zombie, clouds, graveyard, game {
@@ -105,12 +106,12 @@ endscreen{
 }
 
 button {
-color: #ffffff;
     align-self: center;
     padding: 20px;
     font-size: 30px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     border-radius: 20px;
-    background-color: background-color: #272727
+    background-color: background-color: #272727;
+    color: #ffffff;    
 }
