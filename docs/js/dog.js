@@ -27,12 +27,12 @@ export class Dog extends GameObject {
         console.log(e.key);
         switch (e.key) {
             case "ArrowLeft":
-                this.horizontalSpeed = -5;
                 this.element.classList.add('left');
+                this.horizontalSpeed = -8;
                 break;
             case "ArrowRight":
-                this.horizontalSpeed = 5;
                 this.element.classList.remove('left');
+                this.horizontalSpeed = 8;
                 break;
             default:
                 break;

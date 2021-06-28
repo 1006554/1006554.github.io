@@ -73,24 +73,23 @@ export class Graveyard extends GameObject {
             b.top <= a.bottom);
     }
     update() {
+        let zombieRect = this.zombie.getRectangle();
+        let dogRect = this.dog.getFutureRectangle();
+        if (this.dog.x < -5) {
+            this.dog.x = -4;
+        }
+        else if (this.checkCollision(zombieRect, dogRect)) {
+        }
+        else {
+            this.dog.update();
+        }
+        this.zombie.update();
         this.spawnCounter++;
         if (this.spawnCounter > 120) {
             this.spawnCounter = 0;
             this.maggots.push(new Maggot(this));
             this.bones.push(new Bone(this));
         }
-        if (this.dog.x < -5) {
-            this.dog.x = -4;
-        }
-        else {
-            this.dog.update();
-        }
-        if (this.checkCollision(this.dog.getFutureRectangle(), this.zombie.getRectangle())) {
-        }
-        else {
-            this.dog.update();
-        }
-        this.zombie.update();
         for (let b of this.bones) {
             b.update();
             if (this.checkCollision(this.dog.getRectangle(), b.getRectangle())) {
