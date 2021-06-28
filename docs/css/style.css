@@ -1,5 +1,5 @@
 body {
-    color: FFFFFF;
+    color: #ffffff;
     background-color: #70CF51;
     text-align: center;
     font-size: 30px;
@@ -9,7 +9,7 @@ body {
     top: 50%;
 }
 
-startscreen, endscreen, life, bone, maggot, dog, zombie, clouds, graveyard, game {
+ui, startscreen, endscreen, life, bone, maggot, dog, zombie, clouds, graveyard, game {
     position: absolute;
     display: block;
     box-sizing: border-box;
@@ -105,6 +105,7 @@ endscreen{
 }
 
 button {
+color: #ffffff;
     align-self: center;
     padding: 20px;
     font-size: 30px;
