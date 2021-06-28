@@ -20,4 +20,4 @@ export class UI extends GameObject {
         this.element.innerHTML = `Score: ${this.getScore()}`;
     }
 }
-//# sourceMappingURL=ui.js.map
+# sourceMappingURL=ui.js.map
