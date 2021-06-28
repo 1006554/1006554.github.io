@@ -17,13 +17,13 @@ foreground, ui, startscreen, endscreen, life, bone, maggot, dog, zombie, clouds,
 }
 
 game {
-	background-image: url(/docs/css/Environment/skybox.png) ;
+	background-image: url(css/Environment/skybox.png) ;
     width:100%; height: 100%;
     
 }
 
 graveyard {
-    background-image: url(/docs/css/Environment/graveyard-stage-one.png);
+    background-image: url(css/Environment/graveyard-stage-one.png);
     display: block;
     margin: 0;
     padding: 0;
@@ -32,7 +32,7 @@ graveyard {
 }
 
 clouds {
-    background-image: url(/docs/css/Environment/clouds.png);
+    background-image: url(css/Environment/clouds.png);
     width: 100%;
     height: 100%;;
     overflow: hidden; 
@@ -49,22 +49,22 @@ clouds {
 }
 
 dog{
-    background-image: url(/docs/css/dog.png);
+    background-image: url(css/dog.png);
     width:105px; 
     height: 110px;
     
 }
 dog.left{
-        background-image:url(/docs/css/dog-left.png);
+        background-image:url(css/dog-left.png);
     }
     
 zombie{
-    background-image: url(/docs/css/zombi.png);
+    background-image: url(css/zombi.png);
     width: 160px; height: 200px; 
 }
 
 logo {
-    background-image: url(/docs/css/logo.svg);
+    background-image: url(css/logo.svg);
     width: 70%; height: 70%;
     margin-left: 15%;
     margin-top: 5%;
@@ -73,18 +73,18 @@ logo {
 }
 
 bone {
-    background-image: url(/docs/css/bone.png);
+    background-image: url(css/bone.png);
     width: 50px; height: 50px;
 }
 
 maggot {
-    background-image: url(/docs/css/maggot.png);
+    background-image: url(css/maggot.png);
     width: 30px; height: 35px;
 
 }
 
 life {
-    background-image: url(/docs/css/lives.png);
+    background-image: url(css/lives.png);
     width: 40px; height: 100px;
     margin-left: 10px;
     margin-top: 10px;
@@ -104,7 +104,7 @@ endscreen{
 }
 
 foreground{
-    background-image: url(/docs/css/Environment/foreground.png);
+    background-image: url(css/Environment/foreground.png);
     display: block;
     margin: 0;
     padding: 0;
