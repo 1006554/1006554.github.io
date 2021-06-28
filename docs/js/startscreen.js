@@ -15,4 +15,4 @@ export class StartScreen extends GameObject {
         this.game.showGameScreen();
     }
 }
-//# sourceMappingURL=startscreen.js.map
+# sourceMappingURL=startscreen.js.map
