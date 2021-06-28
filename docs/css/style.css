@@ -1,4 +1,5 @@
 body {
+    color: FFFFFF;
     background-color: #70CF51;
     text-align: center;
     font-size: 30px;
@@ -8,7 +9,7 @@ body {
     top: 50%;
 }
 
-foreground, ui, startscreen, endscreen, life, bone, maggot, dog, zombie, clouds, graveyard, game {
+startscreen, endscreen, life, bone, maggot, dog, zombie, clouds, graveyard, game {
     position: absolute;
     display: block;
     box-sizing: border-box;
@@ -17,13 +18,13 @@ foreground, ui, startscreen, endscreen, life, bone, maggot, dog, zombie, clouds,
 }
 
 game {
-	background-image: url(Environment/skybox.png) ;
-    width:100%; height: 100%;
+	background-image: url(skybox.png) ;
+        width:100%; height: 100%;
     
 }
 
 graveyard {
-    background-image: url(Environment/graveyard-stage-one.png);
+    background-image: url(graveyard-stage-one.png);
     display: block;
     margin: 0;
     padding: 0;
@@ -32,7 +33,7 @@ graveyard {
 }
 
 clouds {
-    background-image: url(Environment/clouds.png);
+    background-image: url(clouds.png);
     width: 100%;
     height: 100%;;
     overflow: hidden; 
@@ -73,7 +74,7 @@ logo {
 }
 
 bone {
-    background-image: url(bone.png);
+    background-image: url(https://github.com/1006554/1006554.github.io/blob/main/docs/css/bone.png);
     width: 50px; height: 50px;
 }
 
@@ -103,15 +104,6 @@ endscreen{
     opacity: 70%;
 }
 
-foreground{
-    background-image: url(Environment/foreground.png);
-    display: block;
-    margin: 0;
-    padding: 0;
-    width: 20000px;
-    height: 1000px;
-}
-
 button {
     align-self: center;
     padding: 20px;
@@ -119,4 +111,5 @@ button {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     border-radius: 20px;
+    background-color: background-color: rgba(0,0,0,0.88)
 }
