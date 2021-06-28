@@ -5,4 +5,4 @@ export class Background extends GameObject {
         this.x = 0;
     }
 }
-# sourceMappingURL=background.js.map
+//# sourceMappingURL=background.js.map
